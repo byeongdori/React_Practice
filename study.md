@@ -15,3 +15,12 @@
 - Props
     - 컴포넌트로 전달되는 매개변수 데이터
     - {Key : Value} 쌍으로 구성
+    - function도 매개변수 데이터로 전달 가능
+    - React.memo() -> 재 랜더링 할 필요없는 부분은 하지 않음! 효율성 증가
+    - propTypes
+        - prop가 어떤 데이터 & 자료형 쌍을 가져야 하는지 최소한의 정보를 만들 수 있음
+        - 명시적으로 컴파일 에러가 나지는 않지만, 경고를 띄워 알려줌!
+
+- Create React App
+    - npx create-react-app {app 이름} 명령어로 React 프로젝트 생성가능
+    - node.js, npx 설치되어 있어야함!

@@ -5,25 +5,43 @@
   </body>
   <script src="https://unpkg.com/react@17.0.2/umd/react.development.js"></script>
   <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/prop-types@15.7.2/prop-types.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <script type="text/babel">
 
-    function Btn(props) {
-      return <button style={{
+    // props의 기본값 줄 수 있음! fontsize = 16
+    function Btn(props, {fontSize=16}) {
+      return <button 
+      style={{
         backgroundColor: "tomato",
         color:"white",
         padding:"10px 20px",
         border: 0,
         borderRadius:10,
-        fontSize: props.big ? 18 : 16,
-      }}> {props.text} </button>;
+        fontSize:props.fontSize,
+      }}
+      // 함수도 props로 넘겨줄 수 있다!
+      onClick={props.changeValue}
+      > 
+      {props.text} 
+      </button>;
     }
+    // props가 어떤 자료형을 원하는지 최소한으로 정의할 수 있음
+    // 명시적으로 컴파일 에러는 나지 않지만, 경고로 알려줌!
+    Btn.propTypes = {
+      text: PropTypes.string.isRequired,
+      fontSize: PropTypes.number,
+    };
 
+    // React.memo -> re-render가 필요없는, 즉 변경 없는 부분은 새로 렌더링하지 않음
+    const MemorizedBtn = React.memo(Btn)
     function App() {
+      const [value, setValue] = React.useState("Save Changes");
+      const changeValue = () => setValue("Revert Changes");
       return  (
         <div>
-          <Btn text="Save Changes" big={true}/>
-          <Btn text="Continue" big={false}/>
+          <MemorizedBtn text={value} changeValue={changeValue} fontSize={18}/>
+          <MemorizedBtn text="Continue" fontSize={18}/>
         </div>
       );
     }
