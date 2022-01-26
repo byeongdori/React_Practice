@@ -33,3 +33,8 @@
     - Cleanup Function
         - 컴포넌트가 파괴될 때 호출되는 함수
         - useEffect 함수의 첫번째 매개변수에 리턴값으로 호출하여 사용!
+
+- map
+    - Array에 있는 원소별로 특정 로직 실행하고 싶을 때 사용
+    - map 함수 사용시 각 element에 key 줘야함!
+    - ex) array.map((item, key) => {/* 로직 */})
